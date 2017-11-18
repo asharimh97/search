@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Search Engine</title>
+
+    <!-- Style goes here -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/style.css') }}">
+
+    <!-- icon goes here -->
+  </head>
+  <body>
+    <header id="header">
+      LOGO GOES HERE
+    </header>
+    <div class="container">
+      <form method="post">
+        {{ sform.hidden_tag() }}
+        <fieldset>
+            <legend align="center">Inputkan Query</legend>
+            {{ sform.keyword }}
+            {{ sform.search }}
+        </fieldset>
+      </form>
+
+      <div align="center">
+      <b>Document Result:</b><br><br>
+          <table>
+              <tr>
+                  <td style="text-align:center">Judul</td>
+                  <td style="text-align:center">Distance</td>
+              </tr>
+          {% for v in data %}
+              <tr>
+              <td style="text-align:center">{{ v[0] }}</td>
+              <td style="text-align:center">{{ v[1] }}</td>
+              </tr>
+          {% endfor %}
+          </table>
+      </div>
+    </div>
+  </body>
+</html>
