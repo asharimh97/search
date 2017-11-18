@@ -2,16 +2,22 @@
 
 Implementasi pembuatan search engine berdasarkan seluruh materi yang didapatkan dari mata kuliah Sistem Temu Kembali Informasi dengan menggunakan Python.
 
-## Petunjuk instalasi
+### Petunjuk instalasi
 ```
 pip install -r requirements.txt
 ```
 
-## Running 
+### Running 
 ```
 python run.py
 ```
 
-##Acknowlegdements
+### Acknowlegdements
 - https://github.com/rianrajagede/flask-search.git
 - https://gitlab.com/rochanaph/flask-search-document.git
+
+### Kelompok 1
+- Afif Imaduddin
+- Ashari Muhammad Hisbulloh
+- Desgracia Rumapea
+- Muhammad Marsell Abdurrahman
