@@ -41,6 +41,7 @@ def main():
 
 
 def findSim(pathfile, pathcorpus):
+# def findSim(keyword, pathcorpus):
     """
     mencari jarak/similarity antara suatu file dengan sekumpulan file/corpus dalam folder.
     :param pathfile: path tempat artikel yg dicari
@@ -51,6 +52,7 @@ def findSim(pathfile, pathcorpus):
     this_path = os.path.split(__file__)[0]
     pathcorpus = os.path.join(this_path, pathcorpus)
     pathfile   = os.path.join(this_path, pathfile)
+
     # membaca sekaligus pre-processing semua artikel corpus simpan ke dictionary
     articles = {}
     for item in os.listdir(pathcorpus):
@@ -66,6 +68,9 @@ def findSim(pathfile, pathcorpus):
         with open(pathfile, 'r') as file:
             articles[findname] = lib1.prepro_base(file.read())
 
+    # tambahkan keyword yang dicari
+    # keyw = lib1.prepro_base(keyword)
+
     # representasi bow
     list_of_bow = []
     for key, value in articles.items():
@@ -73,15 +78,26 @@ def findSim(pathfile, pathcorpus):
         dic = lib2.bow(list_token)
         list_of_bow.append(dic)
 
+    # bow keyword
+    # list_token_key = keyw.split() # jadikan list
+    # dic_bow = lib2.bow(list_token_key) # jadikan dictionary
+    # vector_key = []
+
+
     # matrix
     matrix_akhir = lib2.matrix(list_of_bow)
+    # matrix_akhir = lib3.tfidf(dic_bow, list_of_bow)
+
     # jarak
     id_file = articles.keys().index(findname)    # index findname dalam articles.keys() = index dalam matrix
     jarak = {}
     for key, vektor in zip(articles.keys(), matrix_akhir):
         if key != findname:
             jarak[key] = lib3.euclidean(matrix_akhir[id_file], vektor)
+            # jarak[key] = vektor
 
-    return lib2.sortdic(jarak, descending=False)
+    resu = lib2.sortdic(jarak, descending=False)
+    print resu
+    return resu
 
-# print findSim('./text files/ot_2.txt','./text files')
+print findSim('./text files/ot_2.txt','./text files')
