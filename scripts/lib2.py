@@ -45,6 +45,15 @@ def sortdic(dic, descending=True, n=None):
     # python 2
     return zip(key_ordered,val_ordered)
 
+def sortlist(list, descending=True, n=None):
+    '''
+    fungsi untuk mengurutkan multi dimensional list hasil dari tf idf library hrs
+    :param list: list dari hasil tf idf berupa [namafile, bobot, judul]
+    :param descending: parameter untuk menentukan urutan naik/turun
+    :param n: jumlah elemen yang ingin ditampilkan
+    :return: dictionary result yang sudah terurut berdasarkan bobot
+    '''
+    return 0
 
 
 def l2_normalizer(vector):
