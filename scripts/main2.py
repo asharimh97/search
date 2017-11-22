@@ -23,8 +23,15 @@ def findSim(keyword, pathcorpus):
     keys = keyword.split()
     result = table.similarities(keys)
     res = []
+    # for x, title in result, articles:
+    #     if x[1]:
+    #         res.append([x[0], (round(x[1], 3)*100), title.value()])
+
     for x in result:
         if x[1]:
-            res.append([x[0], (round(x[1], 3)*100)])
+            with open(pathcorpus + '/' + x[0], 'r') as file:
+                res.append([x[0], x[1], file.readline()])
+
+    print(res)
 
     return res

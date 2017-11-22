@@ -27,7 +27,7 @@ def searchTask(form):
 @app.route('/view/<fileName>')
 def viewFile(fileName):
     try:
-        return send_file('./text files/', fileName, attachment_filename=fileName)
+        return send_file('./text files/' + fileName, attachment_filename=fileName)
     except Exception as e:
         return str(e)
 
