@@ -7,7 +7,7 @@ from flask import Flask, render_template, redirect, send_file
 from flask_wtf import FlaskForm
 from wtforms import TextField, IntegerField, SubmitField
 # from scripts.main import findSim
-from scripts.main2 import findSim
+from scripts.main import findSim
 
 app = Flask(__name__)
 app.config.update(dict(SECRET_KEY='AFIFGANTENG123'))
@@ -30,6 +30,19 @@ def viewFile(fileName):
         return send_file('./text files/' + fileName, attachment_filename=fileName)
     except Exception as e:
         return str(e)
+
+@app.route('/detail/<filename>')
+def viewDetail(filename) :
+    path_corpus = "./text files"
+    pathname = path_corpus + '/' + filename
+
+    with open(pathname, 'r') as file:
+        document=file.read()
+
+    with open(pathname, 'r') as file:
+        title=file.readline()
+            
+    return render_template('detail.html',data=document, title=title)
 
 @app.route('/', methods=['GET','POST'])
 def main():
